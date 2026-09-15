@@ -48,3 +48,21 @@ def user_signup(request):
 def user_logout(request):
     request.session['first_name'] = None
     return redirect('/ors/signin/')
+
+def test_list(request):
+    list=[
+        {'id':1,'first_name':"rahul","last_name":"patel","email":"rahul@gamil.com","password":"rahul@123"},
+        {'id': 2, 'first_name': "amit", "last_name": "birla", "email": "amit@gamil.com", "password": "amit@123"},
+        {'id': 3, 'first_name': "neha", "last_name": "sen", "email": "neha@gamil.com", "password": "neha@123"},
+        {'id': 4, 'first_name': "puja", "last_name": "patidar", "email": "puja@gamil.com", "password": "puja@123"},
+        {'id': 5, 'first_name': "aarya", "last_name": "varma", "email": "aarya@gamil.com", "password": "aarya@123"}
+    ]
+    return render(request,'test_list.html', {"list": list})
+
+def user_list(request):
+    form={}
+    form['page_no']=1
+    form['page_size']=5
+    service = UserService()
+    list = service.search(form)
+    return render(request, "user_list.html", {"list": list})
