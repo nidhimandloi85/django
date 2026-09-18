@@ -61,8 +61,44 @@ def test_list(request):
 
 def user_list(request):
     form={}
-    form['page_no']=1
-    form['page_size']=5
+    form['page_no'] = 1
+    form['page_size'] = 5
+
+    if request.method == 'POST':
+        if request.POST['operation'] == "next":
+            form['page_no'] = int(request.POST.get('pageNo'))
+            form['page_no'] += 1
+
+        if request.POST['operation'] == "previous" :
+            form['page_no'] = int(request.POST.get('pageNo'))
+            form['page_no'] -= 1
+
+        if request.POST['operation'] == 'search':
+            form['page_no'] = 1
+            form['first_name'] = request.POST.get('firstName')
+
     service = UserService()
     list = service.search(form)
-    return render(request, "user_list.html", {"list": list})
+    index = (form['page_no'] - 1) * 5
+    return render(request, "user_list.html", {"list": list,'page_no':form['page_no'], 'index': index})
+
+def user_delete(request,id=0):
+    service=UserService()
+    service.delete(id)
+    return redirect('/ors/list/')
+
+def user_save(request):
+
+    if request.method == "POST":
+        form = {}
+        form['first_name'] = request.POST.get('firstName')
+        form['last_name'] = request.POST.get('lastName')
+        form['login_id'] = request.POST.get('loginId')
+        form['password'] = request.POST.get('password')
+        form['dob'] = request.POST.get('dob')
+        form['address'] = request.POST.get('address')
+
+        service =UserService()
+        service.add(form)
+    return render(request, 'user.html')
+
