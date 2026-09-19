@@ -91,6 +91,7 @@ def user_save(request):
 
     if request.method == "POST":
         form = {}
+        form['id']=request.POST.get('id',0)
         form['first_name'] = request.POST.get('firstName')
         form['last_name'] = request.POST.get('lastName')
         form['login_id'] = request.POST.get('loginId')
@@ -99,6 +100,14 @@ def user_save(request):
         form['address'] = request.POST.get('address')
 
         service =UserService()
-        service.add(form)
-    return render(request, 'user.html')
+        if form['id'] != '' and  form['id'] >0:
+           service.update(form)
+        else:
+            service.add(form)
+    return render(request,'user.html')
+
+def edit_user(request,id=0):
+    service=UserService()
+    user_data=service.get(id)
+    return render(request,'user.html',{'data':user_data[0]})
 
