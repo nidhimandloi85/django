@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if request.session.first_name == None %}
+<h3>hi guest</h3>
+<a href="/ors/welcome/"><b>Welcome</b></a> <b>|</b>
+<a href="/ors/signin/"><b>Login</b></a> <b>|</b>
+<a href="/ors/signup/"><b>Registration</b></a>
+{% else %}
+<a href="/ors/save/"><b>Add list</b></a><b>|</b>
+<a href="/ors/list/"><b>User list</b></a> <b>|</b>
+<a href="/ors/testlist/"><b>Test List</b></a> |
+<a href="/ors/logout/"><b>logout</b></a><b>|</b>
+
+{% endif %}
+</body>
+</html>
