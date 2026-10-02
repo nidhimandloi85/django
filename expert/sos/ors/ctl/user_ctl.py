@@ -65,7 +65,10 @@ class UserCtl:
             input_error['error'] = True
         return input_error['error']
 
-    def display(self, request):
+    def display(self, request,operation = '',id=0):
+        if operation == "edit" and id >0:
+            user = UserService().get(id)
+            self.model_to_form(user)
         return render(request, 'user.html', {'form': self.form})
 
     def submit(self, request):
