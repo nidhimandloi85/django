@@ -11,9 +11,9 @@
     <div align="center">
         <h1 style="margin-bottom: -10px; color: navy;">
             {% if form.id > 0 %}
-            Update User
+            Update College
             {% else %}
-            Add User
+            Add College
             {% endif %}
         </h1>
         <div style="height: 30px;">
@@ -56,16 +56,16 @@
                 <td style="position: fixed;"><font color="red">{{ form.input_error.address }}</font></td>
             </tr>
             <tr>
-<!--                <th>Gender:</th>-->
-<!--                <td>-->
-<!--                    <select name="gender" style="width:100%">-->
-<!--                        <option value="{{ form.gender }}">{{form.gender}}</option>-->
-<!--                        <option value="Male">Male</option>-->
-<!--                        <option value="Female">Female</option>-->
-<!--                    </select>-->
-<!--                </td>-->
-<!--                <td style="position: fixed; color: red;">{{ form.input_error.gender }}</td>-->
-<!--            </tr>-->
+                <!--                <th>Gender:</th>-->
+                <!--                <td>-->
+                <!--                    <select name="gender" style="width:100%">-->
+                <!--                        <option value="{{ form.gender }}">{{form.gender}}</option>-->
+                <!--                        <option value="Male">Male</option>-->
+                <!--                        <option value="Female">Female</option>-->
+                <!--                    </select>-->
+                <!--                </td>-->
+                <!--                <td style="position: fixed; color: red;">{{ form.input_error.gender }}</td>-->
+                <!--            </tr>-->
             <tr>
                 <th>Gender:</th>
                 <td>
@@ -76,12 +76,7 @@
             <tr>
                 <th>Role:</th>
                 <td>
-                    <select name="role_id" style="width:100%">
-                        <option value="{{ form.role_id }}">{{form.role_name}}</option>
-                        {% for role in form.preload_list %}
-                        <option value="{{ role.id }}">{{ role.name }}</option>
-                        {% endfor %}
-                    </select>
+                    {{ preload_data.role_select|safe }}
                 </td>
                 <td style="position: fixed; color: red;">{{ form.input_error.role_id }}</td>
             </tr>

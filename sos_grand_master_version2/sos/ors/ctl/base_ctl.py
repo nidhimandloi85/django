@@ -14,7 +14,7 @@ class BaseCtl:
         self.form['page_no'] = 1
         self.form['page_size'] = 5
         self.form['list'] = []
-        self.form['preload_data'] = {}
+        self.preload_data = {}
 
     def preload(self, request):
         pass

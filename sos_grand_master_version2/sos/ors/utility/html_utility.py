@@ -4,7 +4,7 @@ from ..models import DropdownItem
 class HtmlUtility:
 
     @staticmethod
-    def get_list_from_list(name :str,selected_val :str,list_data:list[str]) -> str:
+    def get_list_from_list(name: str, selected_val: str, list_data: list[str]) -> str:
         sb = [f"<select name = '{name}' style= 'width:100%''>"]
         sb.append("<option value='0'>--select--</option>")
 
@@ -17,13 +17,12 @@ class HtmlUtility:
         sb.append("</select>")
         return "".join(sb)
 
-    def get_list_from_beans(name:str,selected_val:int,bean_list: list[DropdownItem]) ->str:
+    def get_list_from_beans(name: str, selected_val: int, bean_list: list[DropdownItem]) -> str:
         sb = [f"<select name='{name}' style='width:100%''>"]
         sb.append("<option value='0'>--Select--</option>")
 
-
         for obj in bean_list:
-            key =obj.get_key()
+            key = obj.get_key()
             val = obj.get_value()
 
             if key == selected_val:
@@ -31,10 +30,5 @@ class HtmlUtility:
             else:
                 sb.append(f"<option value='{key}'>{val}</option>")
 
-
         sb.append("</select>")
         return "".join(sb)
-
-
-
-

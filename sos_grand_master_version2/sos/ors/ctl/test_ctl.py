@@ -17,22 +17,23 @@ class TestCtl(BaseCtl):
         gender_list = ["Male", "Female"]
         role_list = RoleService().search({})
         user_list = UserService().search({})
-        self.form["preload_data"]['gender_select'] = HtmlUtility.get_list_from_list(
+        self.preload_data['gender_select'] = HtmlUtility.get_list_from_list(
             "gender",
             self.form.get(""),
             gender_list
         )
-        self.form["preload_data"]["role_select"] = HtmlUtility.get_list_from_beans(
+        self.preload_data["role_select"] = HtmlUtility.get_list_from_beans(
             "roleId",
             int(self.form.get("role_id") or 0),
             role_list
         )
-        self.form["preload_data"]["user_select"] = HtmlUtility.get_list_from_beans(
+        self.preload_data["user_select"] = HtmlUtility.get_list_from_beans(
             "userId",
             int(self.form.get("id") or 0),
             user_list
 
         )
+        return self.preload_data
 
     def display(self,request,params={}):
 

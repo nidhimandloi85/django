@@ -12,10 +12,19 @@ class UserCtl(BaseCtl):
 
     def preload(self, request):
         gender_list = ["Male", "Female"]
+        role_list = RoleService().search({})
+        self.form['preload_list'] = role_list
+
         self.preload_data['gender_select'] = HtmlUtility.get_list_from_list(
             "gender",
-            self.form.get(""),
+            self.form.get("gender"),
             gender_list
+        )
+
+        self.preload_data['role_select'] = HtmlUtility.get_list_from_beans(
+            "roleId",
+            self.form.get("role_id"),
+            role_list
         )
         return self.preload_data
 
@@ -41,10 +50,10 @@ class UserCtl(BaseCtl):
         if (DataValidator.is_null(request.POST.get("address", ''))):
             input_error['address'] = 'Address is required'
             input_error['error'] = True
-        if (DataValidator.is_null(request.POST.get("gender", ''))):
+        if (DataValidator.is_null(self.form['gender']) or request.POST.get("gender") == "0"):
             input_error['gender'] = 'Gender is required'
             input_error['error'] = True
-        if (DataValidator.is_null(request.POST.get("role_id", ''))):
+        if (DataValidator.is_null(self.form['role_id']) or request.POST.get("roleId") == "0"):
             input_error['role_id'] = 'Role is required'
             input_error['error'] = True
         return input_error['error']
@@ -58,7 +67,7 @@ class UserCtl(BaseCtl):
         self.form['dob'] = request.POST.get('dob')
         self.form['address'] = request.POST.get('address')
         self.form['gender'] = request.POST.get('gender')
-        self.form['role_id'] = request.POST.get('role_id')
+        self.form['role_id'] = int(request.POST.get('roleId', 0))
 
     def form_to_model(self, obj):
         obj.id = self.form['id']
