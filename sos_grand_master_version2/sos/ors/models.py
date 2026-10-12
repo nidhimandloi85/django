@@ -53,6 +53,14 @@ class College(DropdownItem,models.Model):
     city = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
 
+
+    def get_key(self):
+        return self.id
+
+    def get_value(self):
+        return f"{self.name}"
+
+
     class Meta:
         db_table = 'sos_college'
 
@@ -61,6 +69,12 @@ class Course(DropdownItem,models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     duration = models.CharField(max_length=100)
+
+    def get_key(self):
+        return self.id
+
+    def get_value(self):
+        return f"{self.name}"
 
     class Meta:
         db_table = 'sos_course'
@@ -72,8 +86,35 @@ class Subject(DropdownItem,models.Model):
     course_id = models.IntegerField()
     course_name = models.CharField(max_length=50)
 
+    def get_key(self):
+        return self.id
+
+    def get_value(self):
+        return f"{self.name}"
+
     class Meta:
         db_table = 'sos_subject'
+
+class Faculty(DropdownItem,models.Model):
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    email_id = models.EmailField()
+    password = models.CharField(max_length=20)
+    address = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50)
+    dob = models.DateField(max_length=20)
+    college_id = models.IntegerField()
+    college_name = models.CharField(max_length=50)
+    subject_id = models.IntegerField()
+    subject_name = models.CharField(max_length=50)
+    course_id = models.IntegerField()
+    course_name = models.CharField(max_length=50)
+
+    class Meta:
+        db_table = 'sos_faculty'
+
+
+
 
 
 

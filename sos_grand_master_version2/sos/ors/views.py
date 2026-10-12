@@ -8,8 +8,13 @@ from .ctl.role_ctl import RoleCtl
 from .ctl.role_list_ctl import RoleListCtl
 from .ctl.test_ctl import TestCtl
 from .ctl.college_ctl import CollegeCtl
+from .ctl.course_ctl import CourseCtl
+from .ctl.course_list_ctl import CourseListCtl
 from .ctl.college_list_ctl import CollegeListCtl
-
+from .ctl.subject_list_ctl import SubjectListCtl
+from .ctl.subject_ctl import SubjectCtl
+from .ctl.faculty_ctl import FacultyCtl
+from .ctl.faculty_list_ctl import FacultyListCtl
 from django.http import HttpResponse
 
 
