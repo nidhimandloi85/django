@@ -101,13 +101,14 @@ class FacultyCtl(BaseCtl):
         obj.password = self.form['password']
         obj.dob = self.form['dob']
         obj.address = self.form['address']
+
         obj.gender = self.form['gender']
         obj.course_id = int(self.form['course_id'])
         obj.course_name = CourseService().get(self.form['course_id']).name
         obj.subject_id = int(self.form['subject_id'])
         obj.subject_name = SubjectService().get(self.form['subject_id']).name
         obj.college_id = int(self.form['college_id'])
-        obj.college_name = CourseService().get(self.form['college_id']).name
+        obj.college_name = CollegeService().get(self.form['college_id']).name
         return obj
 
     def model_to_form(self, obj):
