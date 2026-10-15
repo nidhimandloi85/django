@@ -58,6 +58,7 @@ class BaseCtl:
                 obj = self.get_service().get(params['id'])
                 self.model_to_form(obj)
 
+
             return self.display(request, params)
 
         if request.method == 'POST':
