@@ -20,6 +20,7 @@ from .ctl.student_list_ctl import StudentListCtl
 from .ctl.marksheet_ctl import MarksheetCtl
 from .ctl.marksheet_list_ctl import MarksheetListCtl
 from .ctl.forget_password_ctl import ForgetPasswordCtl
+from .ctl.change_password_ctl import ChangePasswordCtl
 from django.http import HttpResponse
 
 

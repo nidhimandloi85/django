@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 from .base_ctl import BaseCtl
 from ..models import User
@@ -70,7 +70,7 @@ class UserCtl(BaseCtl):
         self.form['role_id'] = int(request.POST.get('roleId', 0))
 
     def form_to_model(self, obj):
-        self.form['id'] = obj.id
+        obj.id = self.form['id']
         obj.first_name = self.form['first_name']
         obj.last_name = self.form['last_name']
         obj.login_id = self.form['login_id']

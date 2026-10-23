@@ -29,6 +29,7 @@ class LoginCtl(BaseCtl):
 
             if user_data:
                 request.session['first_name'] = user_data.first_name
+                request.session['id'] = user_data.id
                 return redirect('/ors/Welcome/')
             else:
                 self.form['message'] = 'Login ID & Password Invalid'

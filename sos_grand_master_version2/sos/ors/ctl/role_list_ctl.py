@@ -1,7 +1,6 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from .base_ctl import BaseCtl
 from ..service.role_service import RoleService
-from ..service.user_service import UserService
 
 
 class RoleListCtl(BaseCtl):
