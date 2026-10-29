@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 class BaseDAO(ABC):
 
     def save(self, obj):
-        duplicate = self.find_by_unique_key(obj)
+        duplicate = self.check_duplicate(obj)
 
         if obj.pk:
             duplicate = duplicate.exclude(pk=obj.pk)
@@ -48,6 +48,9 @@ class BaseDAO(ABC):
 
         return page_obj
 
+    def get_model(self):
+        pass
+
     def check_duplicate(self, obj):
         key = self.get_unique_key()
         value = getattr(obj, key)
@@ -73,3 +76,6 @@ class BaseDAO(ABC):
     @abstractmethod
     def get_model(self):
         pass
+
+
+

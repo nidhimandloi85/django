@@ -11,7 +11,7 @@ class UserDAO(BaseDAO):
         return User
 
     def get_label(self):
-        return " Name"
+        return " login_id"
 
     def get_where_clause(self, query, params):
         value = params.get("first_name", "")

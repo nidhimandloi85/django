@@ -63,7 +63,7 @@ class RegistrationCtl(BaseCtl):
     def submit(self, request,params ={}):
             try:
                 user = self.form_to_model(User())
-                self.get_service().save(user)
+                self.get_service().register_user(user)
                 self.form['message'] = 'User Registration Successfully...!!!'
                 self.form['error'] = False
             except Exception as e:
