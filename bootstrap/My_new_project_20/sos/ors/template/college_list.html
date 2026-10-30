@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+{% include 'header.html' %}
+<form method="POST">
+    {% csrf_token %}
+    <div align="center">
+        <h1>College List</h1>
+    </div>
+    <div align="center">
+        <table>
+            <tr>
+                <th>College Name:</th>
+                <td><input type="text" name="Name" placeholder="enter college name here"></td>
+                <td><input type="submit" name="operation" value="search"></td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <table border="1" width="100%">
+        <tr>
+            <th>s.no</th>
+            <th>College Name</th>
+            <th>Address</th>
+            <th>State</th>
+            <th>city</th>
+            <th>PhoneNumber</th>
+            <th>Actions</th>
+        </tr>
+        {% for l in form.list %}
+        <tr align="center">
+            <td>{{ form.index|add:forloop.counter }}</td>
+            <td>{{ l.name }}</td>
+            <td>{{ l.address }}</td>
+            <td>{{ l.state }}</td>
+            <td>{{ l.city }}</td>
+            <td>{{ l.phone_number }}</td>
+            <td><a href="/ors/College/edit/{{l.id}}/"><b>edit</b></a> <b>|</b> <a href="/ors/CollegeList/delete/{{l.id}}/"><b>delete</b></a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <table style="width: 100%">
+        <tr>
+            <td style="width: 25%">
+                <input type="submit" name="operation" value="previous" {% if not form.has_previous %} disabled {% endif %}>
+            </td>
+            <td style="width: 75%"></td>
+            <td>
+                <input type="submit" name="operation" value="next" {% if not form.has_next %} disabled {% endif %}>
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="pageNo" value="{{form.page_no}}">
+</form>
+</body>
+</html>
